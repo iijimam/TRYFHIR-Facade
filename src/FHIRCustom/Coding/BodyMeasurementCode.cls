@@ -1,0 +1,21 @@
+Class FHIRCustom.Coding.BodyMeasurementCode Extends FHIRTemplate.DataType.CodeableConcept
+{
+
+Parameter CodeSystem = "urn:oid:1.2.392.200119.4.801";
+
+/// コードからインスタンスを取得
+ClassMethod GetByCode(name As %String, unit As %String) As FHIRTemplate.DataType.CodeableConcept
+{
+        set display=""
+        &SQL(SELECT Code INTO :code FROM FHIRCustom_DB.BodyMeasurementCode WHERE Name = :name & Unit = :unit)
+        if SQLCODE=0 {
+                set obj=..%New()
+                set obj.code=code
+                set obj.display=name
+                set obj.system=..#CodeSystem
+                quit obj
+        }
+        quit ""
+}
+
+}
