@@ -55,7 +55,7 @@ ClassMethod Bundle(input As %DynamicObject, ByRef json As %DynamicObject, ByRef 
     set status=$$$OK
     try {
         //Bundle作成
-        set bundle=##class(FHIRTemplate.BundlePatientObservation).%New()
+        set bundle=##class(FHIRCustom.BundlePatientObservation).%New()
 
         //Patient情報取得
         set sql="SELECT JSON_OBJECT('PatientId':PID, 'FirstName':Given, 'LastName':Family, 'FirstNameKana':GivenKana, 'LastNameKana':FamilyKana, 'DOB':DOB, 'PostalCode':Zip, 'Address':Pref||City||Address, 'Phone':Tel, 'Gender':Gender) As json FROM ISJHospital.Patient where PID=?"
@@ -67,7 +67,7 @@ ClassMethod Bundle(input As %DynamicObject, ByRef json As %DynamicObject, ByRef 
         kill rset
 
         //BundleにPatientリソースを割り当てる
-        set bundle.Patient=patient
+        do bundle.Resource.Insert(patient)
 
         kill rset
         //Observation情報取得（複数件ある）
@@ -79,7 +79,7 @@ ClassMethod Bundle(input As %DynamicObject, ByRef json As %DynamicObject, ByRef 
             //Patientのリファレンスを登録
             set observation.Patient=patient
             //BundleにObservationリソース割り当てる
-            do bundle.Observation.Insert(observation)
+            do bundle.Resource.Insert(observation)
             kill observation
         }
 

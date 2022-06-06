@@ -29,19 +29,19 @@ ClassMethod Patient2(in As %DynamicObject, ByRef patient As FHIRTemplate.Patient
     return $$$OK
 }
 
-ClassMethod ObservationBodyMeasurement(in As %DynamicObject, ByRef observation As FHIRTemplate.ObservationBodyMeasurement) As %Status
+ClassMethod ObservationBodyMeasurement(in As %DynamicObject, ByRef observation As FHIRCustom.ObservationBodyMeasurement) As %Status
 {
     #dim ex As %Exception.AbstractException
     set status=$$$OK
     try {
-        set observation=##class(FHIRTemplate.ObservationBodyMeasurement).%New()
+        set observation=##class(FHIRCustom.ObservationBodyMeasurement).%New()
         /*
         set code=##class(FHIRTemplate.DataType.CodeableConcept).%New()
         set code.system=observation.#CodeSystem
         set code.code=in.code
         set code.display=in.display
         */
-        set code=##class(FHIRCustom.Coding.BodyMeasurementCode).GetByCode(in.display,in.unit)      
+        set code=##class(FHIRCustom.CodeableConcept.BodyMeasurementCode).GetByCode(in.display,in.unit)      
         set observation.Code=code
         set observation.EffectiveDateTime=$ZDATETIMEH(in.EffectiveDateTime,3)
         set valueQuantity=##class(FHIRTemplate.DataType.Quantity).%New()
