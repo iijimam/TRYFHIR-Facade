@@ -1,4 +1,4 @@
-Class FHIRCustom.Coding.BodyMeasurementCode Extends FHIRTemplate.DataType.CodeableConcept
+Class FHIRCustom.CodeableConcept.BodyMeasurementCode Extends FHIRTemplate.DataType.CodeableConceptBase
 {
 
 Parameter CodeSystem = "urn:oid:1.2.392.200119.4.801";
@@ -12,7 +12,6 @@ ClassMethod GetByCode(name As %String, unit As %String) As FHIRTemplate.DataType
                 set obj=..%New()
                 set obj.code=code
                 set obj.display=name
-                set obj.system=..#CodeSystem
                 quit obj
         }
         quit ""

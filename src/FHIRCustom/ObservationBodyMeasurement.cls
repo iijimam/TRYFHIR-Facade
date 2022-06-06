@@ -1,4 +1,4 @@
-Class FHIRTemplate.ObservationBodyMeasurement Extends Resource
+Class FHIRCustom.ObservationBodyMeasurement Extends FHIRTemplate.Observation
 {
 
 /// JSON出力する際のテンプレート
@@ -30,23 +30,6 @@ XData Template [ MimeType = application/json ]
 }
 }
 
-Parameter ResourceType = "Observation";
-
-// MEDIS看護実践用語標準マスタ（看護観察編のOIDを指定してます）https://www.medis.or.jp/4_hyojyun/medis-master/pdf/OID.pdf
-
-Parameter CodeSystem = "urn:oid:1.2.392.200119.4.801";
-
-Property Category As %String;
-
-// Property Code As FHIRTemplate.DataType.CodeableConcept;
-
-Property Code As FHIRCustom.Coding.BodyMeasurementCode;
-
-Property EffectiveDateTime As FHIRTemplate.DataType.TimeStamp;
-
-/// Patientリファレンス
-Property Patient As FHIRTemplate.Patient;
-
-Property ValueQuantity As FHIRTemplate.DataType.Quantity;
+Property Code As FHIRCustom.CodeableConcept.BodyMeasurementCode;
 
 }
