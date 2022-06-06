@@ -19,6 +19,8 @@ XData Template [ MimeType = application/json ]
 }
 }
 
+Property system As %String;
+
 Property code As %String;
 
 Property display As %String;
