@@ -37,7 +37,6 @@ ClassMethod ObservationBodyMeasurement(in As %DynamicObject, ByRef observation A
         set observation=##class(FHIRCustom.ObservationBodyMeasurement).%New()
         /*
         set code=##class(FHIRCustom.CodeableConcept.BodyMeasurementCode).%New()
-        set code.system=code.#CodeSystem
         set code.code=in.code
         set code.display=in.display
         */
