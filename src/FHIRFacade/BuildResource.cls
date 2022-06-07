@@ -63,7 +63,7 @@ ClassMethod Bundle(input As %DynamicObject, ByRef json As %DynamicObject, ByRef 
         if rset.%Size()=0 {
             throw ##class(%Exception.General).%New(5001,"指定の患者ID："_input.PID_"の患者は存在しません")
         }
-        $$$ThrowOnError(##class(FHIRFacade.SetResourceData).Patient2(rset.%Get(0),.patient))
+        $$$ThrowOnError(##class(FHIRFacade.SetResourceData).Patient(rset.%Get(0),.patient))
         kill rset
 
         //BundleにPatientリソースを割り当てる

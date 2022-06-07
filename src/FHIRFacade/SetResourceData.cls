@@ -15,7 +15,7 @@ ClassMethod Validate(in As %DynamicObject) As %Status
 	quit tSC
 }
 
-ClassMethod Patient2(in As %DynamicObject, ByRef patient As FHIRTemplate.Patient) As %Status
+ClassMethod Patient(in As %DynamicObject, ByRef patient As FHIRTemplate.Patient) As %Status
 {
     kill %objlasterror
     set patient=##class(FHIRTemplate.Patient).%New(in)
